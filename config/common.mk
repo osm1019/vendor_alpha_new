@@ -471,7 +471,8 @@ CUSTOM_LOCALES += \
     ast_ES \
     gd_GB \
     cy_GB \
-    fur_IT
+    fur_IT \
+    nn_NO
 
 # Include Lineage LatinIME dictionaries
 PRODUCT_PACKAGE_OVERLAYS += vendor/alpha/overlay/dictionaries
