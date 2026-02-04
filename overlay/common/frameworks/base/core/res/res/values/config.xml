@@ -319,7 +319,7 @@
         <item>device_personalization_services/EchoSmartspace__enable_my_pixel_ambient_data=true</item>
         <item>device_personalization_services/EchoSmartspace__enable_predictor_expiration=true</item>
         <item>device_personalization_services/EchoSmartspace__enable_remote_views=true</item>
-        <item>device_personalization_services/EchoSmartspace__enable_remote_views_content_migration=treu</item>
+        <item>device_personalization_services/EchoSmartspace__enable_remote_views_content_migration=true</item>
         <item>device_personalization_services/EchoSmartspace__enable_remote_views_hub_mode_timer=true</item>
         <item>device_personalization_services/EchoSmartspace__enable_remote_views_mobile_hub_mode_timer=true</item>
         <item>device_personalization_services/EchoSmartspace__enable_settings_highlight=true</item>
