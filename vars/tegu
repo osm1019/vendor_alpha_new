@@ -1,27 +1,17 @@
 # Pixel 9a
 
-# Usage: ${device_repos[@]}
-device_repos=(
-  device/google/tegu
-)
-
 # Updated semi-manually via pixel/update-any-var.sh
 
-readonly build_id="BP2A.250805.005"
+readonly build_id="BP4A.260105.004.E1"
 
 # Updated automatically via pixel/update-device-vars.sh
 
-readonly prev_aosp_tag="android-15.0.0_r25"
-readonly aosp_tag="unknown"
+readonly build_number="14587043"
 
-readonly build_number="13691446"
+readonly image_url="https://dl.google.com/dl/android/aosp/tegu-bp4a.260105.004.e1-factory-ecc7a50b.zip"
+readonly image_sha256="ecc7a50b3fca74b634c925dc9e9e47bd9de7a002d6790f45de850c49b567c4e2"
 
-readonly image_url="https://dl.google.com/dl/android/aosp/tegu-bp2a.250805.005-factory-e76deb7b.zip"
-readonly image_sha256="e76deb7bd1183644dfda31ce896cae7440c4c12ef55935a99ccdec3f640c5ef7"
+readonly flash_url="https://flash.android.com/build/14587043?target=tegu-user&signed"
 
-readonly flash_url="https://flash.android.com/build/13691446?target=tegu-user&signed"
-
-readonly ota_url="https://dl.google.com/dl/android/aosp/tegu-ota-bp2a.250805.005-567602fb.zip"
-readonly ota_sha256="567602fb5e266f954c36ffb36889951dd7044371c90e97d3f75c3227eebca722"
-
-readonly security_patch="unknown"
+readonly ota_url="https://dl.google.com/dl/android/aosp/tegu-ota-bp4a.260105.004.e1-f4618450.zip"
+readonly ota_sha256="f4618450a1d735fa759abb58add6af65a5a955f56d46a8dc2d154f6ecc757b8f"

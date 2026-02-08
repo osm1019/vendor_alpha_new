@@ -27,6 +27,7 @@
     <component-override package="com.google.android.gms">
         <component class=".chimera.GmsIntentOperationService$GmsExternalReceiver" enabled="false" />
         <component class=".stats.service.DropBoxEntryAddedReceiver" enabled="false" />
+        <component class=".update.control.NotificationControl" enabled="false" />
         <component class=".update.OtaSuggestionActivity" enabled="false" />
         <component class=".update.OtaSuggestionSummaryProvider" enabled="false" />
         <component class=".update.phone.PopupDialog" enabled="false" />

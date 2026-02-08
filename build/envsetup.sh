@@ -1,7 +1,7 @@
-CLANG_VERSION=$(build/soong/scripts/get_clang_version.py)
+CLANG_VERSION=$(${ANDROID_BUILD_TOP}/build/soong/scripts/get_clang_version.py)
 export LLVM_AOSP_PREBUILTS_VERSION="${CLANG_VERSION}"
 
-RUST_VERSION=$(grep 'RustDefaultVersion =' build/soong/rust/config/global.go | awk '{print $3}' | awk -F '"' '{print $2}')
+RUST_VERSION=$(grep 'RustDefaultVersion =' ${ANDROID_BUILD_TOP}/build/soong/rust/config/global.go | awk '{print $3}' | awk -F '"' '{print $2}')
 export RUST_AOSP_PREBUILTS_VERSION="${RUST_VERSION}"
 
 # check to see if the supplied product is one we can build
@@ -504,6 +504,10 @@ function fixup_common_out_dir() {
 }
 
 function build_kernel() {
+    if [[ "${SKIP_KERNEL_BUILD}" == "true" || "${SKIP_KERNEL_BUILD}" == "1" ]]; then
+        echo "Skipping kernel build"
+        return
+    fi
     local alpha_branch="$(_get_build_var_cached ALPHA_BUILD_BRANCH)"
 
     local target_kernel_device="$(_get_build_var_cached TARGET_KERNEL_DEVICE)"
@@ -586,7 +590,7 @@ function build_kernel() {
 function generate_host_overrides() {
     export BUILD_USERNAME=android-build
     HEX=$(openssl rand -hex 8)
-    ALPHA=$(cat /dev/urandom | tr -dc 'a-z0-9' | fold -w 4 | head -n 1)
+    ALPHA=$(cat /dev/urandom | tr -dc 'a-z0-9' | head -c 4)
     export BUILD_HOSTNAME="r-${HEX}-${ALPHA}"
     echo "BUILD_USERNAME=$BUILD_USERNAME"
     echo "BUILD_HOSTNAME=$BUILD_HOSTNAME"

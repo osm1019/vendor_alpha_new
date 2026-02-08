@@ -1,29 +1,17 @@
 # Pixel 9 Pro XL
 
-# Usage: ${device_repos[@]}
-device_repos=(
-  device/google/gs-common
-  device/google/zumapro
-  device/google/caimito
-)
-
 # Updated semi-manually via pixel/update-any-var.sh
 
-readonly build_id="BP2A.250805.005"
+readonly build_id="BP4A.260105.004.E1"
 
 # Updated automatically via pixel/update-device-vars.sh
 
-readonly prev_aosp_tag="aml_tz6_351400020"
-readonly aosp_tag="unknown"
+readonly build_number="14587043"
 
-readonly build_number="13691446"
+readonly image_url="https://dl.google.com/dl/android/aosp/komodo-bp4a.260105.004.e1-factory-4ac75651.zip"
+readonly image_sha256="4ac7565138f4d327c2127284ca3974b3722333b98c371716080d0fa4e24d93f5"
 
-readonly image_url="https://dl.google.com/dl/android/aosp/komodo-bp2a.250805.005-factory-8fec87e8.zip"
-readonly image_sha256="8fec87e863d0f4b0ed4c2d3cf29d8348f19b7409fe68b8e8593226ec6dbef112"
+readonly flash_url="https://flash.android.com/build/14587043?target=komodo-user&signed"
 
-readonly flash_url="https://flash.android.com/build/13691446?target=komodo-user&signed"
-
-readonly ota_url="https://dl.google.com/dl/android/aosp/komodo-ota-bp2a.250805.005-a9b24e2e.zip"
-readonly ota_sha256="a9b24e2e7acb45a27c7c269b86507ccedea886e524d08f43ad573ba5b36123ac"
-
-readonly security_patch="unknown"
+readonly ota_url="https://dl.google.com/dl/android/aosp/komodo-ota-bp4a.260105.004.e1-fb641847.zip"
+readonly ota_sha256="fb641847d0f2979d014c7fa4afb29bb85c945a0e5d4494a47bcdcbc3f3674d52"

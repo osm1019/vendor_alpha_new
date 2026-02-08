@@ -1,27 +1,17 @@
 # Pixel 9
 
-# Usage: ${device_repos[@]}
-device_repos=(
-  # common repos in komodo
-)
-
 # Updated semi-manually via pixel/update-any-var.sh
 
-readonly build_id="BP2A.250805.005"
+readonly build_id="BP4A.260105.004.E1"
 
 # Updated automatically via pixel/update-device-vars.sh
 
-readonly prev_aosp_tag="aml_tz6_351400020"
-readonly aosp_tag="unknown"
+readonly build_number="14587043"
 
-readonly build_number="13691446"
+readonly image_url="https://dl.google.com/dl/android/aosp/tokay-bp4a.260105.004.e1-factory-1d16ccce.zip"
+readonly image_sha256="1d16cccebcd2f0648fbbd42acc4c30e6205cca50019cd2d08d360ca94581fd9d"
 
-readonly image_url="https://dl.google.com/dl/android/aosp/tokay-bp2a.250805.005-factory-a2b3b8c1.zip"
-readonly image_sha256="a2b3b8c1fa3bb8bfb6d6c09a0b958753732c591a8ec86b319e91490420dbeffb"
+readonly flash_url="https://flash.android.com/build/14587043?target=tokay-user&signed"
 
-readonly flash_url="https://flash.android.com/build/13691446?target=tokay-user&signed"
-
-readonly ota_url="https://dl.google.com/dl/android/aosp/tokay-ota-bp2a.250805.005-085f8c15.zip"
-readonly ota_sha256="085f8c15f37e67fb500ac8d06f280608bcf30e5a04ff26692c2dcbc104e8bf10"
-
-readonly security_patch="unknown"
+readonly ota_url="https://dl.google.com/dl/android/aosp/tokay-ota-bp4a.260105.004.e1-df04f5c1.zip"
+readonly ota_sha256="df04f5c198a2721a5e6ffa9ccb5099d72625f8020ad98534bab5d7a77b83f9f0"

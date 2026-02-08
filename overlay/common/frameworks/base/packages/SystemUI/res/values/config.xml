@@ -34,7 +34,6 @@
         <item>com.android.systemui.clocks.metro</item>
         <item>com.android.systemui.clocks.numoverlap</item>
         <item>com.android.systemui.clocks.weather</item>
-        <item>com.libremobileos.clock</item>
     </string-array>
 
     <string-array name="config_pluginWhitelist">
@@ -61,7 +60,4 @@
     <!-- Time (in ms) to delay the bouncer views from showing when passive auth may be used for
     device entry. -->
     <integer name="primary_bouncer_passive_auth_delay">0</integer>
-
-    <!-- Biometric Dialog values -->
-    <integer name="biometric_dialog_text_gravity">1</integer> <!-- CENTER_HORIZONTAL -->
 </resources>

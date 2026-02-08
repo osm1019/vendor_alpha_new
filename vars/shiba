@@ -1,27 +1,17 @@
 # Pixel 8
 
-# Usage: ${device_repos[@]}
-device_repos=(
-  # common repos in husky
-)
-
 # Updated semi-manually via pixel/update-any-var.sh
 
-readonly build_id="BP2A.250805.005"
+readonly build_id="BP4A.260105.004.E1"
 
 # Updated automatically via pixel/update-device-vars.sh
 
-readonly prev_aosp_tag="aml_tz6_351400020"
-readonly aosp_tag="unknown"
+readonly build_number="14587043"
 
-readonly build_number="13691446"
+readonly image_url="https://dl.google.com/dl/android/aosp/shiba-bp4a.260105.004.e1-factory-c7cb1ddd.zip"
+readonly image_sha256="c7cb1dddab0b2766ce84ec85c753cb9939830fbbccf9cea189494f08ed2410c1"
 
-readonly image_url="https://dl.google.com/dl/android/aosp/shiba-bp2a.250805.005-factory-664c3f2d.zip"
-readonly image_sha256="664c3f2d6a44fd17878b3524128b7b26524e1f24387238fd082f1e78771a24da"
+readonly flash_url="https://flash.android.com/build/14587043?target=shiba-user&signed"
 
-readonly flash_url="https://flash.android.com/build/13691446?target=shiba-user&signed"
-
-readonly ota_url="https://dl.google.com/dl/android/aosp/shiba-ota-bp2a.250805.005-e92c3615.zip"
-readonly ota_sha256="e92c36151ecd8ddb9e73d5e7c7c691a289e4160d61e11d566f08ddb037c3129e"
-
-readonly security_patch="unknown"
+readonly ota_url="https://dl.google.com/dl/android/aosp/shiba-ota-bp4a.260105.004.e1-d9a1c2a5.zip"
+readonly ota_sha256="d9a1c2a58f42f0cab777a410b415765e4602fe7b28ab3b3ad207f14310f49df4"

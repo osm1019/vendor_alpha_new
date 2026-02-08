@@ -47,24 +47,27 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
 
 ifeq ($(TARGET_BUILD_VARIANT),eng)
     # Disable ADB authentication
-    PRODUCT_SYSTEM_DEFAULT_PROPERTIES += ro.adb.secure=0
+    PRODUCT_SYSTEM_EXT_PROPERTIES += ro.adb.secure=0
 else
     WITH_ADB_INSECURE ?= false
     ifeq ($(WITH_ADB_INSECURE),true)
         # Forcebly disable ADB authentication
-        PRODUCT_SYSTEM_DEFAULT_PROPERTIES += ro.adb.secure=0
+        PRODUCT_SYSTEM_EXT_PROPERTIES += ro.adb.secure=0
     else
         # Enable ADB authentication
-        PRODUCT_SYSTEM_DEFAULT_PROPERTIES += ro.adb.secure=1
+        PRODUCT_SYSTEM_EXT_PROPERTIES += ro.adb.secure=1
 
         # Set ro.debuggable=0 for userdebug
         PRODUCT_NOT_DEBUGGABLE_IN_USERDEBUG := true
     endif
 
-    # Storage manager
-    PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-        ro.storage_manager.enabled=true
+    # Disable extra StrictMode features on all non-engineering builds
+    PRODUCT_PRODUCT_PROPERTIES += persist.sys.strictmode.disable=true
 endif
+
+# Storage manager
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.storage_manager.enabled=true
 
 # Enable Material Design 3 Expressive
 PRODUCT_PRODUCT_PROPERTIES += \
@@ -185,26 +188,26 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     media.recorder.show_manufacturer_and_model=true
 
 # Disable async MTE on a few processes
-PRODUCT_SYSTEM_EXT_PROPERTIES += \
+PRODUCT_PRODUCT_PROPERTIES += \
     persist.arm64.memtag.app.com.android.se=off \
     persist.arm64.memtag.app.com.google.android.bluetooth=off \
     persist.arm64.memtag.app.com.android.nfc=off \
     persist.arm64.memtag.process.system_server=off
 
 # Enable dex2oat64 to do dexopt
-PRODUCT_SYSTEM_EXT_PROPERTIES += \
+PRODUCT_PRODUCT_PROPERTIES += \
     dalvik.vm.dex2oat64.enabled=true
 
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+PRODUCT_PRODUCT_PROPERTIES += \
     dalvik.vm.systemuicompilerfilter=speed
 
 ifeq ($(TARGET_BUILD_VARIANT),userdebug)
-    PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    PRODUCT_PRODUCT_PROPERTIES += \
         debug.sf.enable_transaction_tracing=false
 endif
 
 # Log privapp-permissions whitelist
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+PRODUCT_PRODUCT_PROPERTIES += \
     ro.control_privapp_permissions=log
 
 
@@ -233,7 +236,7 @@ ifneq ($(TARGET_EXCLUDE_BACKUPTOOL),true)
             system/bin/backuptool_ab.functions \
             system/bin/backuptool_postinstall.sh
 
-        PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+        PRODUCT_PRODUCT_PROPERTIES += \
             ro.ota.allow_downgrade=true
     endif
 endif
@@ -288,6 +291,10 @@ PRODUCT_COPY_FILES += \
     vendor/alpha/config/permissions/org.lineageos.health.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/org.lineageos.health.xml \
     vendor/alpha/config/permissions/org.lineageos.livedisplay.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/org.lineageos.livedisplay.xml \
 
+# Lineage interfaces
+PRODUCT_PACKAGES += \
+    framework_compatibility_matrix.lineage.xml
+
 
 ############################
 ##        PACKAGES        ##
@@ -316,7 +323,6 @@ PRODUCT_PACKAGES += \
     GameSpace \
     LMOFreeform \
     LMOFreeformSidebar \
-    LMOSystemUIClock \
     OmniJaws \
     OmniStyle
 
@@ -346,7 +352,7 @@ ifeq ($(TARGET_FACE_UNLOCK_SUPPORTED),true)
     PRODUCT_PACKAGES += \
         FaceUnlock
 
-    PRODUCT_SYSTEM_EXT_PROPERTIES += \
+    PRODUCT_PRODUCT_PROPERTIES += \
         ro.face.sense_service=true
 
     PRODUCT_COPY_FILES += \
@@ -429,6 +435,7 @@ PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
     system/bin/mount.ntfs \
     system/%/libfuse-lite.so \
     system/%/libntfs-3g.so \
+    system/%/libzstd.so \
     system/etc/textclassifier/actions_suggestions.universal.model \
     system/etc/textclassifier/lang_id.model \
     system/etc/textclassifier/textclassifier.en.model \
@@ -471,8 +478,6 @@ PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/alpha/overlay/dictionaries
 
 PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/crowdin/overlay
 PRODUCT_PACKAGE_OVERLAYS += vendor/crowdin/overlay
-
-DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += vendor/alpha/config/device_framework_matrix.xml
 
 PRODUCT_EXTRA_RECOVERY_KEYS += \
     vendor/alpha/build/target/product/security/alpha
