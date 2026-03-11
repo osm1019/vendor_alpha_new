@@ -137,6 +137,7 @@ ifeq ($(TARGET_BUILD_PACKAGE),3)
 
         $(call inherit-product, vendor/pixel/launcher/products/launcher.mk)
         $(call inherit-product, vendor/pixel/themepicker/products/themepicker.mk)
+        $(call inherit-product, vendor/pixel/sounds/products/sounds.mk)
     else
         PRODUCT_PRODUCT_PROPERTIES += \
             persist.sys.nexuslauncher=0
