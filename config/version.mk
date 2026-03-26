@@ -41,6 +41,17 @@ ALPHA_VERSION := $(PLATFORM_VERSION)-$(ALPHA_BUILD_DATE)-$(ALPHA_BUILD_VARIANT)-
 # Display version
 ALPHA_DISPLAY_VERSION := AlphaDroid-$(ALPHA_BUILD_VERSION)-$(ALPHA_BUILD_VARIANT)-$(ALPHA_DEVICE)
 
+ifeq ($(TARGET_IS_PIXEL),true)
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.alpha.version=$(ALPHA_VERSION) \
+    ro.alpha.release.type=$(ALPHA_RELEASE_TYPE) \
+    ro.alpha.build.branch=$(ALPHA_BUILD_BRANCH) \
+    ro.alpha.build.version=$(ALPHA_BUILD_VERSION) \
+    ro.alpha.build.variant=$(ALPHA_BUILD_VARIANT) \
+    ro.alpha.build.date=$(ALPHA_BUILD_DATE) \
+    ro.alpha.device=$(ALPHA_DEVICE) \
+    ro.alpha.maintainer=$(ALPHA_MAINTAINER)
+else
 PRODUCT_SYSTEM_PROPERTIES += \
     ro.alpha.version=$(ALPHA_VERSION) \
     ro.alpha.release.type=$(ALPHA_RELEASE_TYPE) \
@@ -50,3 +61,4 @@ PRODUCT_SYSTEM_PROPERTIES += \
     ro.alpha.build.date=$(ALPHA_BUILD_DATE) \
     ro.alpha.device=$(ALPHA_DEVICE) \
     ro.alpha.maintainer=$(ALPHA_MAINTAINER)
+endif  
