@@ -346,8 +346,9 @@ ifneq ($(PRODUCT_NO_CAMERA),true)
         Aperture
 endif
 
-ifneq ($(TARGET_EXCLUDES_AUDIOFX),true)
-    $(call inherit-product, packages/apps/AxionFx/config.mk)
+TARGET_INCLUDE_AXFX ?= false
+ifeq ($(TARGET_INCLUDE_AXFX),true)
+$(call inherit-product-if-exists, packages/apps/AxionFx/config.mk)
 endif
 
 # ColumbusService
