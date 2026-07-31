@@ -203,3 +203,27 @@ PRODUCT_COPY_FILES += \
     $(AOSP_PATH)/effects/ogg/ChargingStarted.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/notifications/ChargingStarted.ogg \
     $(AOSP_PATH)/effects/ogg/Effect_Tick_48k.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ui/Effect_Tick.ogg \
     $(AOSP_PATH)/effects/material/ogg/WirelessChargingStarted.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/notifications/WirelessChargingStarted.ogg
+
+
+ifeq ($(INCLUDE_OPLUS_RINGTONES),true)
+    RINGTONE := $(OPLUS_DEFAULT_RINGTONE)
+    NOTIFICATION := $(OPLUS_DEFAULT_NOTIFICATION)
+    ALARM := $(OPLUS_DEFAULT_ALARM)
+    $(call inherit-product-if-exists, vendor/alpha/audio/oplus.mk)
+else
+    ifeq ($(TARGET_BUILD_PACKAGE),3) #GAPPS
+        RINGTONE := The_big_adventure.ogg
+        NOTIFICATION := Popcorn.ogg
+        ALARM := Bright_morning.ogg
+        $(call inherit-product, vendor/pixel/sounds/products/sounds.mk)
+    endif
+endif
+
+RINGTONE ?= Orion.ogg
+NOTIFICATION ?= Argon.ogg
+ALARM ?= Hassium.ogg
+
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.config.ringtone=$(RINGTONE) \
+    ro.config.notification_sound=$(NOTIFICATION) \
+    ro.config.alarm_alert=$(ALARM)

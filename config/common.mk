@@ -111,15 +111,6 @@ PRODUCT_PRODUCT_PROPERTIES += \
 
 # GAPPS
 ifeq ($(TARGET_BUILD_PACKAGE),3)
-    # Default notification/alarm sounds
-    PRODUCT_PRODUCT_PROPERTIES += \
-        ro.config.notification_sound=Popcorn.ogg \
-        ro.config.alarm_alert=Bright_morning.ogg
-
-    # Default ringtone
-    PRODUCT_PRODUCT_PROPERTIES += \
-        ro.config.ringtone=The_big_adventure.ogg
-
     # Gboard Props
     PRODUCT_PRODUCT_PROPERTIES += \
         ro.com.google.ime.bs_theme=true \
@@ -132,7 +123,6 @@ ifeq ($(TARGET_BUILD_PACKAGE),3)
 
         $(call inherit-product, vendor/pixel/launcher/products/launcher.mk)
         $(call inherit-product, vendor/pixel/themepicker/products/themepicker.mk)
-        $(call inherit-product, vendor/pixel/sounds/products/sounds.mk)
     else
         PRODUCT_PRODUCT_PROPERTIES += \
             persist.sys.nexuslauncher=0
@@ -172,11 +162,6 @@ else
 
     PRODUCT_PRODUCT_PROPERTIES += \
         persist.sys.nexuslauncher=0
-
-    PRODUCT_PRODUCT_PROPERTIES += \
-        ro.config.notification_sound=Argon.ogg \
-        ro.config.alarm_alert=Hassium.ogg \
-        ro.config.ringtone=Orion.ogg
 
     PRODUCT_PRODUCT_PROPERTIES += \
         ro.setupwizard.enterprise_mode=1 \
@@ -340,6 +325,7 @@ PRODUCT_PACKAGES += \
     QuickAccessWallet \
     Recorder \
     Seedvault \
+    SoundPicker \
     ThemesStub \
     Twelve \
     Updater
