@@ -40,6 +40,22 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
     Settings \
     SystemUI
 
+# BuildFingerprint spoof to fix RCS/Wallet (from Evolution X)
+# Applies to all devices EXCEPT currently-supported Pixels (they don't need it)
+TARGET_ENABLE_FP_OVERRIDE ?= true
+ifeq ($(TARGET_ENABLE_FP_OVERRIDE),true)
+ifeq ($(filter $(ALPHA_BUILD), \
+    cheetah panther lynx \
+    husky shiba akita felix tangorpro \
+    tokay caiman komodo comet tegu \
+    mustang blazer frankel rango \
+    stallion \
+    ),)
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    BuildFingerprint=google/mustang_beta/mustang:CANARY/ZP11.260618.005/15760424:user/release-keys
+endif
+endif
+
 
 ##############################
 ##        PROPERTIES        ##
