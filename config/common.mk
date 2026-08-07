@@ -44,6 +44,11 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
 # ON by default to match Evolution X OOTB Wallet/RCS behavior.
 # Disable per-device if it fights PIF: TARGET_ENABLE_FP_OVERRIDE := false
 # Applies to all devices EXCEPT currently-supported Pixels (they don't need it).
+#
+# Keep this fingerprint aligned with the Wallet-working PIF profile (husky canary):
+#   google/husky_beta/husky:CANARY/ZP11.260717.006/16004061 + SECURITY_PATCH 2026-08-05
+# TrickyStore GENERATE path derives brand/device/model from Build.FINGERPRINT when it
+# starts with google/, so a mustang FP + husky PIF + OnePlus OEM props was a mismatch.
 TARGET_ENABLE_FP_OVERRIDE ?= true
 ifeq ($(TARGET_ENABLE_FP_OVERRIDE),true)
 ifeq ($(filter $(ALPHA_BUILD), \
@@ -54,7 +59,7 @@ ifeq ($(filter $(ALPHA_BUILD), \
     stallion \
     ),)
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    BuildFingerprint=google/mustang_beta/mustang:CANARY/ZP11.260618.005/15760424:user/release-keys
+    BuildFingerprint=google/husky_beta/husky:CANARY/ZP11.260717.006/16004061:user/release-keys
 endif
 endif
 
