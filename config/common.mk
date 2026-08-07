@@ -40,8 +40,10 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
     Settings \
     SystemUI
 
-# BuildFingerprint spoof to fix RCS/Wallet (from Evolution X)
-# Applies to all devices EXCEPT currently-supported Pixels (they don't need it)
+# BuildFingerprint spoof to fix RCS/Wallet (from Evolution X).
+# ON by default to match Evolution X OOTB Wallet/RCS behavior.
+# Disable per-device if it fights PIF: TARGET_ENABLE_FP_OVERRIDE := false
+# Applies to all devices EXCEPT currently-supported Pixels (they don't need it).
 TARGET_ENABLE_FP_OVERRIDE ?= true
 ifeq ($(TARGET_ENABLE_FP_OVERRIDE),true)
 ifeq ($(filter $(ALPHA_BUILD), \
