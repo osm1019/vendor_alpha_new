@@ -220,7 +220,16 @@
         <item>device_personalization_services/Notification__enable_otp_check_for_default_sms_package=true</item>
         <item>device_personalization_services/Notification__enable_otp_in_smart_suggestion=true</item>
 
-        <!-- Now Playing (Pixel ASI AmbientIndication + NowPlayingPrebuilt; Rising-proven flags) -->
+        <!-- Now Playing -->
+        <item>device_personalization_services/NowPlaying__now_playing_allowed=true</item>
+        <item>device_personalization_services/NowPlaying__enable_now_playing_for_main_user=true</item>
+        <item>device_personalization_services/NowPlaying__ambient_music_on_demand_enabled=true</item>
+        <item>device_personalization_services/NowPlaying__ambient_music_on_demand_classic_enabled_by_default=true</item>
+        <!-- Software ST has no DSP look-ahead. ASI default (true) opens
+             AudioRecord HOTWORD on the SoundTrigger capture session, which
+             is empty without PAL lab → Nnfp NOT_MUSIC. false uses DEFAULT
+             mic (AudioBufferManager "accessing Mic audio"). -->
+        <item>device_personalization_services/NowPlaying__ambient_music_use_dsp_audio_source=false</item>
         <item>device_personalization_services/NowPlaying__enable_now_playing_lock_screen_update=true</item>
         <item>device_personalization_services/NowPlaying__enable_now_playing_sysui_updates=true</item>
         <item>device_personalization_services/NowPlaying__enable_now_playing_updates=true</item>
@@ -493,5 +502,10 @@
 
     <!-- Whether glanceable hub is enabled by default. -->
     <bool name="config_glanceableHubEnabledByDefault">true</bool>
+
+    <!-- AOSP leaves this empty, so MusicRecognitionManagerService binds no provider and
+         every recognise request fails SERVICE_UNAVAILABLE. GSA's recogniser needs no
+         SoundTrigger model, unlike ambient Now Playing. -->
+    <string name="config_defaultMusicRecognitionService" translatable="false">com.google.android.googlequicksearchbox/com.google.android.apps.search.soundsearch.service.SoundSearchService</string>
 
 </resources>
