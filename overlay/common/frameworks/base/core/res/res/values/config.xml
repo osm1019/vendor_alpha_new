@@ -220,10 +220,25 @@
         <item>device_personalization_services/Notification__enable_otp_check_for_default_sms_package=true</item>
         <item>device_personalization_services/Notification__enable_otp_in_smart_suggestion=true</item>
 
-        <!-- Now Playing -->
+        <!-- Now Playing (Pixel ASI AmbientIndication + NowPlayingPrebuilt; Rising-proven flags) -->
         <item>device_personalization_services/NowPlaying__enable_now_playing_lock_screen_update=true</item>
+        <item>device_personalization_services/NowPlaying__enable_now_playing_sysui_updates=true</item>
+        <item>device_personalization_services/NowPlaying__enable_now_playing_updates=true</item>
         <item>device_personalization_services/NowPlaying__enable_now_playing_quick_affordance=true</item>
         <item>device_personalization_services/NowPlaying__enable_now_playing_quick_settings=true</item>
+        <!-- Online song-DB shards (needs ASI <-> as.oss association in google.xml / nowplaying.xml) -->
+        <item>device_personalization_services/NowPlaying__ambient_music_use_metadata_shards_database=true</item>
+        <item>device_personalization_services/NowPlaying__ambient_music_use_enhanced_matches_database=true</item>
+        <!-- Album art / cloud search: without these ASI Glide fails with "User not opted in" and
+             isOnDemandEnabled stays false after NP "Turn on" / Play updates of NP/ASI/as.oss.
+             NowPlayingFlags also re-applies these at boot / package-replaced. -->
+        <item>device_personalization_services/NowPlaying__ambient_music_on_demand_enabled=true</item>
+        <item>device_personalization_services/NowPlaying__ambient_music_on_demand_classic_enabled_by_default=true</item>
+        <item>device_personalization_services/NowPlaying__cloud_api_allowed=true</item>
+        <item>device_personalization_services/NowPlaying__ambient_music_show_album_art=true</item>
+        <item>device_personalization_services/NowPlaying__ambient_music_download_album_art_via_astrea=true</item>
+        <item>device_personalization_services/NowPlaying__on_demand_hide_if_fingerprinter_install_not_confirmed=false</item>
+        <item>device_personalization_services/NowPlaying__ambient_music_on_demand_search_use_new_opt_in_flow=false</item>
 
         <!-- Screen attention (Pixel 2019) -->
         <item>device_personalization_services/Attention__accel_sensor_enabled=false</item>
