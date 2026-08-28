@@ -21,9 +21,9 @@ Lightweight port of RisingOS `vendor/rising/nowplaying` flags helper.
 | Software SoundTrigger path | `vendor/qcom/.../st-hal-ar` |
 | DeviceConfig defaults (overlay) | `vendor/alpha/overlay/.../config.xml` |
 | Settings Sound → ASI row | `packages/apps/Settings` |
-| **Clear Calling** | **`vendor/pixel-framework` SettingsGoogle** (`OplusClearCalling*`) |
+| **Clear Calling** | **`vendor/oplus/clearcalling`** (Oplus voice-call NC; wired into Settings) |
 
 ## Not included (by design)
 
 - No poll FGS / AmbientIndication publisher (`NowPlayingSoftware` is superseded)
-- No Clear Calling UI here — use pixel-framework
+- No Clear Calling UI here — see `vendor/oplus/clearcalling`

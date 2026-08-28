@@ -2,7 +2,8 @@ $(call inherit-product, vendor/alpha/config/audio.mk)
 $(call inherit-product, vendor/addons/config.mk)
 $(call inherit-product-if-exists, axion-sdk/ax_tflite/common.mk)
 $(call inherit-product-if-exists, vendor/certification/config.mk)
-$(call inherit-product-if-exists, vendor/pixel-framework/config.mk)
+# Oplus Clear Calling (Settings) — replaces pixel-framework SettingsGoogle CC.
+$(call inherit-product-if-exists, vendor/oplus/clearcalling/clearcalling.mk)
 # Rising-style Now Playing flags (album art / On-Demand DeviceConfig). Soft ST lives in st-hal-ar.
 $(call inherit-product-if-exists, vendor/alpha/nowplaying/nowplaying.mk)
 
