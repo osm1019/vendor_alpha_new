@@ -4,7 +4,7 @@ $(call inherit-product-if-exists, axion-sdk/ax_tflite/common.mk)
 $(call inherit-product-if-exists, vendor/certification/config.mk)
 # Oplus Clear Calling (Settings) — replaces pixel-framework SettingsGoogle CC.
 $(call inherit-product-if-exists, vendor/oplus/clearcalling/clearcalling.mk)
-# Rising-style Now Playing flags (album art / On-Demand DeviceConfig). Soft ST lives in st-hal-ar.
+# Rising-style Now Playing flags (album art / On-Demand DeviceConfig). Soft ST lives in SoftwareMusicHal.
 $(call inherit-product-if-exists, vendor/alpha/nowplaying/nowplaying.mk)
 
 # Allow vendor prebuilt repos to exclude themselves from bp scanning
@@ -86,6 +86,11 @@ PRODUCT_PRODUCT_PROPERTIES += \
 # Disable default frame rate limit for games
 PRODUCT_PRODUCT_PROPERTIES += \
     debug.graphics.game_default_frame_rate.disabled=true
+
+# Remote key provisioning
+PRODUCT_PRODUCT_PROPERTIES += \
+    remote_provisioning.enable_rkpd=true \
+    remote_provisioning.hostname=remoteprovisioning.googleapis.com
 
 ifeq ($(PRODUCT_GMS_CLIENTID_BASE),)
     PRODUCT_PRODUCT_PROPERTIES += \
