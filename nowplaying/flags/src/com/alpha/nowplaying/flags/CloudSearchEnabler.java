@@ -10,8 +10,9 @@ import android.util.Log;
  * Without these, Glide fails with "User not opted in or fetching disabled."
  *
  * <p>Ported from RisingOS {@code com.rising.nowplaying.flags.CloudSearchEnabler}.
- * Recognition itself uses st-hal software ST + Google ASI — this package only
- * keeps DeviceConfig sticky across boot and Play updates.
+ * Recognition itself uses SoftwareMusicHal + Google ASI — this package keeps
+ * DeviceConfig sticky across boot and Play updates, marks Pixel's Now Playing
+ * setup as already done, and seeds {@code now_playing_enabled} if unset.
  */
 public final class CloudSearchEnabler {
     private static final String TAG = "NowPlayingFlags";
@@ -36,8 +37,14 @@ public final class CloudSearchEnabler {
 
     public static void apply(Context context) {
         try {
-            Settings.Secure.putInt(context.getContentResolver(), "now_playing_enabled", 1);
-            Settings.Secure.putInt(context.getContentResolver(), "now_playing_suw_visited_by_user", 1);
+            // Skip Pixel's Now Playing setup wizard so ASI treats the device as onboarded.
+            Settings.Secure.putInt(context.getContentResolver(),
+                    "now_playing_suw_visited_by_user", 1);
+            // Seed listening on first boot only. If the user turned it off, leave it off.
+            if (Settings.Secure.getString(context.getContentResolver(),
+                    "now_playing_enabled") == null) {
+                Settings.Secure.putInt(context.getContentResolver(), "now_playing_enabled", 1);
+            }
         } catch (Throwable t) {
             Log.w(TAG, "Unable to set secure NP settings", t);
         }

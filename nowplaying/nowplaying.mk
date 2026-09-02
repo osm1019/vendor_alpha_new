@@ -1,5 +1,5 @@
 # Pixel Now Playing — Rising-style sticky DeviceConfig flags for album art / On-Demand.
-# Recognition path: QTI st-hal-ar software ST for UUID 9f6ad62a + ASI + GMS NowPlayingPrebuilt.
+# Recognition path: in-tree SoftwareMusicHal + ASI + GMS NowPlayingPrebuilt.
 # Clear Calling: vendor/oplus/clearcalling (Settings), not pixel-framework.
 
 PRODUCT_PACKAGES += \

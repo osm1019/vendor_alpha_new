@@ -10,15 +10,16 @@ Lightweight port of RisingOS `vendor/rising/nowplaying` flags helper.
   - Album art (including Astrea download)
   - Online metadata shards
   - SysUI lockscreen update flags
-- Sets `now_playing_enabled` + `now_playing_suw_visited_by_user`
+- Marks `now_playing_suw_visited_by_user` so Pixel's setup wizard is skipped
+- Seeds `now_playing_enabled` on first boot if the user has not chosen yet
 
 ## What lives elsewhere
 
 | Piece | Location |
 |-------|----------|
 | NP APK + `music_detector` + `matcher_tah` | `vendor/pixel/gms` |
-| ASI ↔ as.oss associations | `nowplaying.xml` / `google.xml` (gms) |
-| Software SoundTrigger path | `vendor/qcom/.../st-hal-ar` |
+| ASI ↔ as.oss / NP associations | `nowplaying.xml` / `google.xml` (gms) |
+| Software SoundTrigger path | `SoftwareMusicHal` in `frameworks/base` |
 | DeviceConfig defaults (overlay) | `vendor/alpha/overlay/.../config.xml` |
 | Settings Sound → ASI row | `packages/apps/Settings` |
 | **Clear Calling** | **`vendor/oplus/clearcalling`** (Oplus voice-call NC; wired into Settings) |
