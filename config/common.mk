@@ -49,6 +49,10 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
 ##        PROPERTIES        ##
 ##############################
 
+# System BuildFingerprint spoof (mustang / Pixel 10 Pro XL canary) — OOTB identity
+# for RCS/Wallet when PIF/TrickyStore masters are off. Matches Evolution X style.
+PRODUCT_SYSTEM_PROPERTIES += \
+    BuildFingerprint=google/mustang_beta/mustang:CANARY/ZP11.260618.005/15760424:user/release-keys
 
 ifeq ($(TARGET_BUILD_VARIANT),eng)
     # Disable ADB authentication
