@@ -1,9 +1,7 @@
 $(call inherit-product, vendor/alpha/config/audio.mk)
 $(call inherit-product, vendor/addons/config.mk)
 $(call inherit-product-if-exists, axion-sdk/ax_tflite/common.mk)
-# Do not inherit vendor/certification here — its tegu_beta
-# config_certifiedBuildProperties fights mustang BuildFingerprint / Wallet.
-# $(call inherit-product-if-exists, vendor/certification/config.mk)
+$(call inherit-product-if-exists, vendor/certification/config.mk)
 # Oplus Clear Calling (Settings) — replaces pixel-framework SettingsGoogle CC.
 $(call inherit-product-if-exists, vendor/oplus/clearcalling/clearcalling.mk)
 # Rising-style Now Playing flags (album art / On-Demand DeviceConfig). Soft ST lives in SoftwareMusicHal.
@@ -51,23 +49,6 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
 ##        PROPERTIES        ##
 ##############################
 
-# BuildFingerprint spoof to fix RCS/Wallet (Evolution X style).
-# Same as vendor/lineage/config/evolution.mk: PRODUCT_BUILD_PROP_OVERRIDES
-# (not PRODUCT_SYSTEM_PROPERTIES). Device trees may still set their own
-# BuildFingerprint like Evo dodge does.
-TARGET_ENABLE_FP_OVERRIDE ?= true
-ifeq ($(TARGET_ENABLE_FP_OVERRIDE),true)
-ifeq ($(filter $(ALPHA_BUILD), \
-    cheetah panther lynx \
-    husky shiba akita felix tangorpro \
-    tokay caiman komodo comet tegu \
-    mustang blazer frankel rango \
-    stallion \
-    ),)
-PRODUCT_BUILD_PROP_OVERRIDES += \
-    BuildFingerprint=google/mustang_beta/mustang:CANARY/ZP11.260717.006/16004061:user/release-keys
-endif
-endif
 
 ifeq ($(TARGET_BUILD_VARIANT),eng)
     # Disable ADB authentication
@@ -407,13 +388,7 @@ ifneq ($(WITH_ALPHA_CHARGER),false)
 endif
 
 # su + adb_root
-# AOSP su lives in system/extras/su and installs to /system/xbin/su
-# (userdebug/eng only). ReSukiSU does NOT use this binary — its kernel
-# sucompat intercepts /system/bin/su. Never delete extras/su to fix a
-# Soong name collision with KernelSU; apply-resukisu.sh strips
-# KernelSU/Android.bp instead. Override with WITH_SU=false if unwanted.
 ifneq ($(TARGET_BUILD_VARIANT),user)
-    WITH_SU ?= true
     ifeq ($(WITH_SU),true)
         PRODUCT_PACKAGES += \
             adb_root \
